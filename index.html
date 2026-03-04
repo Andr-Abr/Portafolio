@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andres Arturo Bohada Rojas — Data Analyst & ETL Developer</title>
+  <meta name="description" content="Portafolio profesional de Andres Arturo Bohada Rojas, Analista de Datos y Desarrollador ETL. Proyectos con Java, Python, Angular, Spring Boot, Docker y más." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            sky: {
+              400: '#38bdf8',
+              500: '#0ea5e9',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* ── Fondo gradient recreado de la imagen ── */
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(
+        135deg,
+        #e8f4ff 0%,
+        #a8d8f0 8%,
+        #4db8e8 20%,
+        #1a9fd4 30%,
+        #0d7aaa 45%,
+        #0a5a80 60%,
+        #06334d 78%,
+        #020d14 100%
+      );
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: #e2f0fb;
+    }
+
+    /* ── Glassmorphism cards ── */
+    .glass {
+      background: rgba(6, 30, 46, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(56, 189, 248, 0.18);
+    }
+
+    .glass-light {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+    }
+
+    /* ── Nav ── */
+    nav {
+      background: rgba(2, 13, 20, 0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    /* ── Accent line animado ── */
+    .accent-line {
+      height: 3px;
+      background: linear-gradient(90deg, #38bdf8, #0ea5e9, #0369a1);
+      border-radius: 2px;
+      animation: shimmer 3s ease-in-out infinite;
+      background-size: 200% 100%;
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+
+    /* ── Reveal on scroll ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Tags / badges ── */
+    .tag {
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #93d8f8;
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+
+    /* ── Skill pill ── */
+    .skill-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .skill-pill:hover {
+      background: rgba(14, 165, 233, 0.18);
+      border-color: rgba(56, 189, 248, 0.55);
+    }
+
+    /* ── CTA button ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #0369a1);
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+    }
+    .btn-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(14, 165, 233, 0.45);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      color: #93d8f8;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover {
+      background: rgba(56, 189, 248, 0.12);
+      transform: translateY(-2px);
+    }
+
+    /* ── Project card hover ── */
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(14, 165, 233, 0.2);
+    }
+
+    /* ── Section anchor offset for fixed nav ── */
+    section {
+      scroll-margin-top: 72px;
+    }
+
+    /* ── Divider ── */
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.3), transparent);
+      margin: 0;
+    }
+
+    /* ── Smooth scroll ── */
+    html { scroll-behavior: smooth; }
+
+    /* ── Hero name gradient text ── */
+    .name-gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #93d8f8 50%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Contact input ── */
+    .form-input {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(56,189,248,0.25);
+      color: #e2f0fb;
+      border-radius: 8px;
+      padding: 10px 14px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus {
+      border-color: rgba(56,189,248,0.6);
+    }
+    .form-input::placeholder { color: rgba(226,240,251,0.35); }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       NAV
+  ══════════════════════════════════════════ -->
+  <nav class="fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <span class="font-display font-800 text-white text-lg tracking-tight">Andr-Abr<span class="text-sky-400">.</span></span>
+      <ul class="hidden lg:flex gap-8 text-sm font-body font-500 text-slate-300">
+        <li><a href="#sobre-mi" class="hover:text-sky-400 transition-colors">Sobre mí</a></li>
+        <li><a href="#proyectos" class="hover:text-sky-400 transition-colors">Proyectos</a></li>
+        <li><a href="#habilidades" class="hover:text-sky-400 transition-colors">Habilidades</a></li>
+        <li><a href="#contacto" class="hover:text-sky-400 transition-colors">Contacto</a></li>
+      </ul>
+      <a href="cv.pdf" download class="btn-primary text-white text-sm font-500 px-4 py-2 rounded-lg flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+        Descargar CV
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section id="hero" class="min-h-screen flex items-center pt-20">
+    <div class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
+
+      <!-- Texto -->
+      <div class="reveal">
+        <p class="text-white-400 text-sm font-500 tracking-widest uppercase mb-4 font-body">Disponible para oportunidades</p>
+        <h1 class="font-display text-3xl sm:text-4xl md:text-6xl font-800 leading-tight mb-4">
+          <span class="name-gradient">Andres Arturo<br>Bohada Rojas</span>
+        </h1>
+        <div class="accent-line w-20 mb-5"></div>
+        <p class="text-slate-300 text-lg font-body mb-2 font-500">
+          Analista de Datos & Desarrollador ETL
+        </p>
+        <p class="text-white-400 text-sm font-body mb-8 leading-relaxed max-w-md">
+          Construyo sistemas que transforman datos en decisiones. Trabajo con pipelines ETL, aplicaciones backend robustas y herramientas de procesamiento inteligente de documentos.
+        </p>
+        <div class="flex flex-col sm:flex-row flex-wrap gap-3">
+          <a href="#proyectos" class="btn-primary text-white px-6 py-3 rounded-xl font-500 text-sm font-body">
+            Ver proyectos
+          </a>
+          <a href="cv.pdf" download class="btn-ghost px-6 py-3 rounded-xl font-500 text-sm font-body flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+            Descargar CV
+          </a>
+          <a href="#contacto" class="btn-ghost px-6 py-3 rounded-xl font-500 text-sm font-body">
+            Contacto
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats cards -->
+      <div class="reveal grid grid-cols-2 gap-4 mt-8 md:mt-0" style="transition-delay:0.15s">
+        <div class="glass rounded-2xl p-5">
+          <p class="text-4xl font-display font-800 text-white">2</p>
+          <p class="text-slate-400 text-sm font-body mt-1">Proyectos<br>en producción</p>
+        </div>
+        <div class="glass rounded-2xl row-span-2 overflow-hidden" style="min-height:180px; max-height:280px; position:relative;">
+          <img src="FotoCV.png" alt="Andres Arturo Bohada Rojas" class="w-full h-full object-cover rounded-xl" style="object-fit: fill; position:absolute; top:0; left:0; width:100%; height:100%; border: 1px solid rgba(56,189,248,0.35);" />
+        </div>
+        <div class="glass rounded-2xl p-5">
+          <p class="text-4xl font-display font-800 text-sky-400">45K+</p>
+          <p class="text-slate-400 text-sm font-body mt-1">Registros en<br>base de datos</p>
+        </div>
+        <div class="glass rounded-2xl p-5 col-span-2">
+          <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-1">Stack principal</p>
+          <div class="flex flex-wrap gap-2 mt-2">
+            <span class="tag">Java 21</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Angular</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Docker</span>
+            <span class="tag">n8n</span>
+            <span class="tag">Power Bi</span>
+            <span class="tag">Tableau</span>
+            <span class="tag">Excel</span>
+            <span class="tag">Azure DevOps</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ══════════════════════════════════════════
+       SOBRE MÍ
+  ══════════════════════════════════════════ -->
+  <section id="sobre-mi" class="py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="reveal mb-12">
+        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Quién soy</p>
+        <h2 class="font-display text-4xl font-800 text-white">Sobre mí</h2>
+        <div class="accent-line w-14 mt-3"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-10 items-start">
+        <div class="md:col-span-3 reveal">
+          <p class="text-slate-300 font-body leading-relaxed mb-4">
+            Soy desarrollador con enfoque en <strong class="text-white">análisis de datos, pipelines ETL y automatización de procesos</strong>. Me especializo en construir sistemas que toman datos crudos y los convierten en información útil y accionable.
+          </p>
+          <p class="text-slate-300 font-body leading-relaxed mb-4">
+            He desarrollado aplicaciones de producción que van desde sistemas de búsqueda vehicular con más de 45,000 registros hasta herramientas de procesamiento inteligente de documentos con IA local. Trabajo cómodo tanto en el backend como conectando capas de datos con interfaces web.
+          </p>
+          <p class="text-slate-300 font-body leading-relaxed">
+            Me interesan especialmente los proyectos que involucren integración de fuentes de datos, automatización con herramientas como n8n, y arquitecturas que escalen en producción con Docker y CI/CD.
+          </p>
+        </div>
+
+        <div class="md:col-span-2 reveal" style="transition-delay:0.1s">
+          <div class="glass rounded-2xl p-6 space-y-4">
+            <div>
+              <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Foco profesional</p>
+              <ul class="space-y-2 text-sm text-slate-300 font-body">
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>Pipelines ETL & procesamiento de datos</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>Backend con Java / Spring Boot / Python</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>Automatización de flujos con n8n y Macros en Excel</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>Integración de bases de datos SQL/NoSQL</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>DevOps con Docker, Azure & CI/CD</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>Dashboards en Power Bi</li>
+              </ul>
+            </div>
+            <hr class="section-divider" />
+            <div>
+              <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Contacto rápido</p>
+              <a href="mailto:1218236@gmail.com" class="text-slate-300 text-sm font-body hover:text-sky-400 transition-colors flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                1218236@gmail.com
+              </a>
+              <a href="https://github.com/Andr-Abr" target="_blank" rel="noopener" class="text-slate-300 text-sm font-body hover:text-sky-400 transition-colors flex items-center gap-2 mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-sky-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                github.com/Andr-Abr
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ══════════════════════════════════════════
+       PROYECTOS
+  ══════════════════════════════════════════ -->
+  <section id="proyectos" class="py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="reveal mb-12">
+        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Trabajo destacado</p>
+        <h2 class="font-display text-4xl font-800 text-white">Proyectos</h2>
+        <div class="accent-line w-14 mt-3"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- ── Proyecto 1: RastrosAuto ── -->
+        <div class="glass project-card rounded-3xl p-7 reveal flex flex-col gap-5">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
+                <span class="text-green-400 text-xs font-body font-500">En producción</span>
+              </div>
+              <h3 class="font-display text-2xl font-700 text-white">RastrosAuto</h3>
+              <p class="text-sky-400 text-sm font-body mt-0.5">Sistema de búsqueda vehicular</p>
+            </div>
+            <div class="flex gap-2 flex-shrink-0">
+              <a href="https://rastrosauto.onrender.com" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="Demo en vivo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a href="https://github.com/Andr-Abr/rastrosauto" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="Ver código">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <p class="text-slate-300 text-sm font-body leading-relaxed">
+            Plataforma de búsqueda y comparación vehicular con más de <strong class="text-white">45,000 registros</strong> de especificaciones técnicas. Incluye autenticación, favoritos, historial de búsquedas y comparador lado a lado. Totalmente dockerizado y desplegado en Render + Supabase.
+          </p>
+
+          <div>
+            <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Características</p>
+            <ul class="text-slate-400 text-sm font-body space-y-1">
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> Búsqueda avanzada con múltiples filtros simultáneos</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> Sistema de autenticación y gestión de usuarios</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> Comparador de vehículos lado a lado</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> CI/CD con GitHub Actions, monitoring 24/7</li>
+            </ul>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-auto pt-2">
+            <span class="tag">Java 21</span>
+            <span class="tag">Spring Boot 3</span>
+            <span class="tag">Angular 21</span>
+            <span class="tag">PostgreSQL 15</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Thymeleaf</span>
+            <span class="tag">Render</span>
+            <span class="tag">Supabase</span>
+          </div>
+        </div>
+
+        <!-- ── Proyecto 2: OrganizaText ── -->
+        <div class="glass project-card rounded-3xl p-7 reveal flex flex-col gap-5" style="transition-delay:0.1s">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
+                <span class="text-green-400 text-xs font-body font-500">En producción</span>
+              </div>
+              <h3 class="font-display text-2xl font-700 text-white">OrganizaText</h3>
+              <p class="text-sky-400 text-sm font-body mt-0.5">Procesamiento inteligente de documentos</p>
+            </div>
+            <div class="flex gap-2 flex-shrink-0">
+              <a href="https://organizatext-web.vercel.app" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="Demo en vivo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a href="https://github.com/Andr-Abr/organizatext" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="Ver código">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <p class="text-slate-300 text-sm font-body leading-relaxed">
+            Sistema dual (web + desktop) para procesamiento y categorización automatizada de documentos mediante <strong class="text-white">NLP y RAG</strong>. La versión web funciona 100% offline en el navegador (privacy-first). La app desktop incluye LLM local con Ollama y búsqueda semántica vectorial.
+          </p>
+
+          <div>
+            <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Características</p>
+            <ul class="text-slate-400 text-sm font-body space-y-1">
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> Extracción NLP: keywords, entidades, emails, URLs</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> RAG completo con LanceDB + Ollama (desktop)</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> Procesamiento de 3000+ archivos sin lag</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> CI/CD con Jenkins, deploy automático a Vercel</li>
+            </ul>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-auto pt-2">
+            <span class="tag">Next.js 16</span>
+            <span class="tag">Python / FastAPI</span>
+            <span class="tag">Go / Wails</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">LanceDB</span>
+            <span class="tag">Ollama</span>
+            <span class="tag">n8n</span>
+            <span class="tag">Jenkins</span>
+            <span class="tag">Version Android (Kotlin) en desarrollo</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ══════════════════════════════════════════
+       HABILIDADES
+  ══════════════════════════════════════════ -->
+  <section id="habilidades" class="py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="reveal mb-12">
+        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Tecnologías</p>
+        <h2 class="font-display text-4xl font-800 text-white">Habilidades</h2>
+        <div class="accent-line w-14 mt-3"></div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Backend -->
+        <div class="glass-light rounded-2xl p-6 reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+            <h3 class="text-white font-display font-700 text-base">Backend</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Java 21</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Spring Boot 3</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Spring Security</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Spring Data JPA</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Python</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">FastAPI</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Go / Fiber</span>
+          </div>
+        </div>
+
+        <!-- Datos & ETL -->
+        <div class="glass-light rounded-2xl p-6 reveal" style="transition-delay:0.05s">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h7"/></svg>
+            </div>
+            <h3 class="text-white font-display font-700 text-base">Datos & ETL</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">PostgreSQL 15</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">MongoDB Atlas</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">LanceDB</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Supabase</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">NLP / NER</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">RAG</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Web Workers</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Power Bi</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Excel</span>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="glass-light rounded-2xl p-6 reveal" style="transition-delay:0.1s">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 9l3 3-3 3M13 15h3"/></svg>
+            </div>
+            <h3 class="text-white font-display font-700 text-base">Frontend</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Angular 21</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Next.js 16</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">React 19</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">TypeScript</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Tailwind CSS</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Thymeleaf</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Bootstrap 5</span>
+          </div>
+        </div>
+
+        <!-- DevOps & Infra -->
+        <div class="glass-light rounded-2xl p-6 reveal" style="transition-delay:0.15s">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/></svg>
+            </div>
+            <h3 class="text-white font-display font-700 text-base">DevOps & Infra</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Docker</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Docker Compose</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">GitHub Actions</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Jenkins</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Render</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Vercel</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Maven</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Azure DevOps</span>
+          </div>
+        </div>
+
+        <!-- IA & Automatización -->
+        <div class="glass-light rounded-2xl p-6 reveal" style="transition-delay:0.2s">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+            </div>
+            <h3 class="text-white font-display font-700 text-base">IA & Automatización</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">n8n</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Ollama (LLM local)</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">MCP Protocol</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">sentence-transformers</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">JWT / AES-GCM</span>
+          </div>
+        </div>
+
+        <!-- Idiomas -->
+        <div class="glass-light rounded-2xl p-6 reveal" style="transition-delay:0.25s">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5h18M9 3v2m6-2v2M4 9h16M10 13H4m16 0h-6m-4 4H4m16 0h-6"/></svg>
+            </div>
+            <h3 class="text-white font-display font-700 text-base">Idiomas</h3>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-slate-300">Español</span>
+                <span class="text-sky-400">Nativo</span>
+              </div>
+              <div class="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-sky-400 to-sky-600" style="width:100%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm font-body mb-1">
+                <span class="text-slate-300">Inglés</span>
+                <span class="text-sky-400">Técnico / lectura y escritura</span>
+              </div>
+              <div class="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-sky-400 to-sky-600" style="width:65%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ══════════════════════════════════════════
+       CONTACTO
+  ══════════════════════════════════════════ -->
+  <section id="contacto" class="py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="reveal mb-12">
+        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Hablemos</p>
+        <h2 class="font-display text-4xl font-800 text-white">Contacto</h2>
+        <div class="accent-line w-14 mt-3"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+        <!-- Info -->
+        <div class="reveal">
+          <p class="text-slate-300 font-body leading-relaxed mb-8">
+            Estoy abierto a oportunidades laborales como Analista de Datos, Desarrollador ETL o roles backend. Si tienes un proyecto o una vacante, con gusto conversamos.
+          </p>
+          <div class="space-y-4">
+            <a href="mailto:1218236@gmail.com" class="glass-light rounded-xl p-4 flex items-center gap-4 hover:border-sky-400/40 transition-colors group">
+              <div class="w-10 h-10 rounded-lg bg-sky-500/15 flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <p class="text-xs text-sky-400 font-body uppercase tracking-widest">Email</p>
+                <p class="text-white font-body text-sm group-hover:text-sky-300 transition-colors">1218236@gmail.com</p>
+              </div>
+            </a>
+            <a href="https://github.com/Andr-Abr" target="_blank" rel="noopener" class="glass-light rounded-xl p-4 flex items-center gap-4 hover:border-sky-400/40 transition-colors group">
+              <div class="w-10 h-10 rounded-lg bg-sky-500/15 flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </div>
+              <div>
+                <p class="text-xs text-sky-400 font-body uppercase tracking-widest">GitHub</p>
+                <p class="text-white font-body text-sm group-hover:text-sky-300 transition-colors">github.com/Andr-Abr</p>
+              </div>
+            </a>
+            <a href="cv.pdf" download class="glass-light rounded-xl p-4 flex items-center gap-4 hover:border-sky-400/40 transition-colors group">
+              <div class="w-10 h-10 rounded-lg bg-sky-500/15 flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+              </div>
+              <div>
+                <p class="text-xs text-sky-400 font-body uppercase tracking-widest">Currículum</p>
+                <p class="text-white font-body text-sm group-hover:text-sky-300 transition-colors">Descargar CV (PDF · ATS Ready)</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Formulario mailto -->
+        <div class="glass rounded-2xl p-7 reveal" style="transition-delay:0.1s">
+          <p class="text-white font-display font-700 text-lg mb-5">Envíame un mensaje</p>
+          <div id="contact-form" class="space-y-4">
+            <div>
+              <label class="text-slate-400 text-xs font-body uppercase tracking-widest block mb-1.5">Nombre</label>
+              <input id="cf-name" type="text" placeholder="Tu nombre" class="form-input" />
+            </div>
+            <div>
+              <label class="text-slate-400 text-xs font-body uppercase tracking-widest block mb-1.5">Email</label>
+              <input id="cf-email" type="email" placeholder="tu@email.com" class="form-input" />
+            </div>
+            <div>
+              <label class="text-slate-400 text-xs font-body uppercase tracking-widest block mb-1.5">Mensaje</label>
+              <textarea id="cf-msg" rows="4" placeholder="Cuéntame sobre la oportunidad..." class="form-input resize-none"></textarea>
+            </div>
+            <button onclick="sendMail()" class="btn-primary w-full text-white py-3 rounded-xl font-body font-500 text-sm flex items-center justify-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+              Enviar mensaje
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer class="py-8 border-t border-sky-400/10">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col items-center md:flex-row md:justify-between gap-4 text-center md:text-left">
+      <p class="text-slate-500 text-sm font-body">© 2026 Andres Arturo Bohada Rojas</p>
+      <div class="flex gap-6 text-sm font-body text-slate-500">
+        <a href="#sobre-mi" class="hover:text-sky-400 transition-colors">Sobre mí</a>
+        <a href="#proyectos" class="hover:text-sky-400 transition-colors">Proyectos</a>
+        <a href="#habilidades" class="hover:text-sky-400 transition-colors">Habilidades</a>
+        <a href="#contacto" class="hover:text-sky-400 transition-colors">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════
+       JS: Scroll reveal + mailto form
+  ══════════════════════════════════════════ -->
+  <script>
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mailto form
+    function sendMail() {
+      const name  = document.getElementById('cf-name').value.trim();
+      const email = document.getElementById('cf-email').value.trim();
+      const msg   = document.getElementById('cf-msg').value.trim();
+      if (!name || !email || !msg) {
+        alert('Por favor completa todos los campos.');
+        return;
+      }
+      const subject = encodeURIComponent(`Contacto desde portafolio — ${name}`);
+      const body    = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${msg}`);
+      window.location.href = `mailto:1218236@gmail.com?subject=${subject}&body=${body}`;
+    }
+  </script>
+
+</body>
+</html>
