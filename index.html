@@ -28,7 +28,6 @@
     }
   </script>
   <style>
-    /* ── Fondo gradient recreado de la imagen ── */
     body {
       font-family: 'DM Sans', sans-serif;
       background: linear-gradient(
@@ -47,7 +46,6 @@
       color: #e2f0fb;
     }
 
-    /* ── Glassmorphism cards ── */
     .glass {
       background: rgba(6, 30, 46, 0.55);
       backdrop-filter: blur(14px);
@@ -62,14 +60,12 @@
       border: 1px solid rgba(255, 255, 255, 0.13);
     }
 
-    /* ── Nav ── */
     nav {
       background: rgba(2, 13, 20, 0.7);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(56, 189, 248, 0.15);
     }
 
-    /* ── Accent line animado ── */
     .accent-line {
       height: 3px;
       background: linear-gradient(90deg, #38bdf8, #0ea5e9, #0369a1);
@@ -82,7 +78,6 @@
       100% { background-position:  200% center; }
     }
 
-    /* ── Reveal on scroll ── */
     .reveal {
       opacity: 0;
       transform: translateY(28px);
@@ -93,7 +88,6 @@
       transform: translateY(0);
     }
 
-    /* ── Tags / badges ── */
     .tag {
       background: rgba(14, 165, 233, 0.15);
       border: 1px solid rgba(56, 189, 248, 0.35);
@@ -105,7 +99,6 @@
       white-space: nowrap;
     }
 
-    /* ── Skill pill ── */
     .skill-pill {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(56, 189, 248, 0.2);
@@ -116,7 +109,6 @@
       border-color: rgba(56, 189, 248, 0.55);
     }
 
-    /* ── CTA button ── */
     .btn-primary {
       background: linear-gradient(135deg, #0ea5e9, #0369a1);
       transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
@@ -138,7 +130,6 @@
       transform: translateY(-2px);
     }
 
-    /* ── Project card hover ── */
     .project-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -147,12 +138,10 @@
       box-shadow: 0 20px 50px rgba(14, 165, 233, 0.2);
     }
 
-    /* ── Section anchor offset for fixed nav ── */
     section {
       scroll-margin-top: 72px;
     }
 
-    /* ── Divider ── */
     .section-divider {
       border: none;
       height: 1px;
@@ -160,10 +149,8 @@
       margin: 0;
     }
 
-    /* ── Smooth scroll ── */
     html { scroll-behavior: smooth; }
 
-    /* ── Hero name gradient text ── */
     .name-gradient {
       background: linear-gradient(135deg, #ffffff 0%, #93d8f8 50%, #38bdf8 100%);
       -webkit-background-clip: text;
@@ -171,7 +158,6 @@
       background-clip: text;
     }
 
-    /* ── Contact input ── */
     .form-input {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(56,189,248,0.25);
@@ -186,6 +172,33 @@
       border-color: rgba(56,189,248,0.6);
     }
     .form-input::placeholder { color: rgba(226,240,251,0.35); }
+
+    /* ── Language toggle ── */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(56,189,248,0.3);
+      border-radius: 9999px;
+      overflow: hidden;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .lang-btn {
+      padding: 4px 12px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      color: rgba(147,216,248,0.6);
+      user-select: none;
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, #0ea5e9, #0369a1);
+      color: #fff;
+    }
+    .lang-btn:not(.active):hover {
+      color: #93d8f8;
+    }
   </style>
 </head>
 <body>
@@ -196,16 +209,26 @@
   <nav class="fixed top-0 left-0 right-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <span class="font-display font-800 text-white text-lg tracking-tight">Andr-Abr<span class="text-sky-400">.</span></span>
+
       <ul class="hidden lg:flex gap-8 text-sm font-body font-500 text-slate-300">
-        <li><a href="#sobre-mi" class="hover:text-sky-400 transition-colors">Sobre mí</a></li>
-        <li><a href="#proyectos" class="hover:text-sky-400 transition-colors">Proyectos</a></li>
-        <li><a href="#habilidades" class="hover:text-sky-400 transition-colors">Habilidades</a></li>
-        <li><a href="#contacto" class="hover:text-sky-400 transition-colors">Contacto</a></li>
+        <li><a href="#sobre-mi" class="hover:text-sky-400 transition-colors" data-i18n="nav.about">Sobre mí</a></li>
+        <li><a href="#proyectos" class="hover:text-sky-400 transition-colors" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="#habilidades" class="hover:text-sky-400 transition-colors" data-i18n="nav.skills">Habilidades</a></li>
+        <li><a href="#contacto" class="hover:text-sky-400 transition-colors" data-i18n="nav.contact">Contacto</a></li>
       </ul>
-      <a href="cv.pdf" download class="btn-primary text-white text-sm font-500 px-4 py-2 rounded-lg flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
-        Descargar CV
-      </a>
+
+      <div class="flex items-center gap-3">
+        <!-- Language toggle -->
+        <div class="lang-toggle">
+          <span class="lang-btn active" onclick="setLang('es')" id="btn-es">ES</span>
+          <span class="lang-btn" onclick="setLang('en')" id="btn-en">EN</span>
+        </div>
+        <!-- CV download — href cambia con el idioma -->
+        <a id="nav-cv-link" href="cv.pdf" download class="btn-primary text-white text-sm font-500 px-4 py-2 rounded-lg flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+          <span data-i18n="nav.cv">Descargar CV</span>
+        </a>
+      </div>
     </div>
   </nav>
 
@@ -215,48 +238,46 @@
   <section id="hero" class="min-h-screen flex items-center pt-20">
     <div class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
 
-      <!-- Texto -->
       <div class="reveal">
-        <p class="text-white-400 text-sm font-500 tracking-widest uppercase mb-4 font-body">Disponible para oportunidades</p>
+        <p class="text-white-400 text-sm font-500 tracking-widest uppercase mb-4 font-body" data-i18n="hero.available">Disponible para oportunidades</p>
         <h1 class="font-display text-3xl sm:text-4xl md:text-6xl font-800 leading-tight mb-4">
           <span class="name-gradient">Andres Arturo<br>Bohada Rojas</span>
         </h1>
         <div class="accent-line w-20 mb-5"></div>
-        <p class="text-slate-300 text-lg font-body mb-2 font-500">
+        <p class="text-slate-300 text-lg font-body mb-2 font-500" data-i18n="hero.role">
           Analista de Datos & Desarrollador ETL
         </p>
-        <p class="text-white-400 text-sm font-body mb-8 leading-relaxed max-w-md">
+        <p class="text-white-400 text-sm font-body mb-8 leading-relaxed max-w-md" data-i18n="hero.desc">
           Construyo sistemas que transforman datos en decisiones. Trabajo con pipelines ETL, aplicaciones backend robustas y herramientas de procesamiento inteligente de documentos.
         </p>
         <div class="flex flex-col sm:flex-row flex-wrap gap-3">
-          <a href="#proyectos" class="btn-primary text-white px-6 py-3 rounded-xl font-500 text-sm font-body">
+          <a href="#proyectos" class="btn-primary text-white px-6 py-3 rounded-xl font-500 text-sm font-body" data-i18n="hero.cta.projects">
             Ver proyectos
           </a>
-          <a href="cv.pdf" download class="btn-ghost px-6 py-3 rounded-xl font-500 text-sm font-body flex items-center gap-2">
+          <a id="hero-cv-link" href="cv.pdf" download class="btn-ghost px-6 py-3 rounded-xl font-500 text-sm font-body flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
-            Descargar CV
+            <span data-i18n="nav.cv">Descargar CV</span>
           </a>
-          <a href="#contacto" class="btn-ghost px-6 py-3 rounded-xl font-500 text-sm font-body">
+          <a href="#contacto" class="btn-ghost px-6 py-3 rounded-xl font-500 text-sm font-body" data-i18n="nav.contact">
             Contacto
           </a>
         </div>
       </div>
 
-      <!-- Stats cards -->
       <div class="reveal grid grid-cols-2 gap-4 mt-8 md:mt-0" style="transition-delay:0.15s">
         <div class="glass rounded-2xl p-5">
           <p class="text-4xl font-display font-800 text-white">2</p>
-          <p class="text-slate-400 text-sm font-body mt-1">Proyectos<br>en producción</p>
+          <p class="text-slate-400 text-sm font-body mt-1" data-i18n="hero.stat.projects">Proyectos<br>en producción</p>
         </div>
         <div class="glass rounded-2xl row-span-2 overflow-hidden" style="min-height:180px; max-height:280px; position:relative;">
           <img src="FotoCV.png" alt="Andres Arturo Bohada Rojas" class="w-full h-full object-cover rounded-xl" style="object-fit: fill; position:absolute; top:0; left:0; width:100%; height:100%; border: 1px solid rgba(56,189,248,0.35);" />
         </div>
         <div class="glass rounded-2xl p-5">
           <p class="text-4xl font-display font-800 text-sky-400">45K+</p>
-          <p class="text-slate-400 text-sm font-body mt-1">Registros en<br>base de datos</p>
+          <p class="text-slate-400 text-sm font-body mt-1" data-i18n="hero.stat.records">Registros en<br>base de datos</p>
         </div>
         <div class="glass rounded-2xl p-5 col-span-2">
-          <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-1">Stack principal</p>
+          <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-1" data-i18n="hero.stack">Stack principal</p>
           <div class="flex flex-wrap gap-2 mt-2">
             <span class="tag">Java 21</span>
             <span class="tag">Spring Boot</span>
@@ -266,7 +287,7 @@
             <span class="tag">PostgreSQL</span>
             <span class="tag">Docker</span>
             <span class="tag">n8n</span>
-            <span class="tag">Power Bi</span>
+            <span class="tag">Power BI</span>
             <span class="tag">Tableau</span>
             <span class="tag">Excel</span>
             <span class="tag">Azure DevOps</span>
@@ -285,20 +306,20 @@
   <section id="sobre-mi" class="py-24">
     <div class="max-w-6xl mx-auto px-6">
       <div class="reveal mb-12">
-        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Quién soy</p>
-        <h2 class="font-display text-4xl font-800 text-white">Sobre mí</h2>
+        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2" data-i18n="about.subtitle">Quién soy</p>
+        <h2 class="font-display text-4xl font-800 text-white" data-i18n="about.title">Sobre mí</h2>
         <div class="accent-line w-14 mt-3"></div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-5 gap-10 items-start">
         <div class="md:col-span-3 reveal">
-          <p class="text-slate-300 font-body leading-relaxed mb-4">
+          <p class="text-slate-300 font-body leading-relaxed mb-4" data-i18n="about.p1">
             Soy desarrollador con enfoque en <strong class="text-white">análisis de datos, pipelines ETL y automatización de procesos</strong>. Me especializo en construir sistemas que toman datos crudos y los convierten en información útil y accionable.
           </p>
-          <p class="text-slate-300 font-body leading-relaxed mb-4">
+          <p class="text-slate-300 font-body leading-relaxed mb-4" data-i18n="about.p2">
             He desarrollado aplicaciones de producción que van desde sistemas de búsqueda vehicular con más de 45,000 registros hasta herramientas de procesamiento inteligente de documentos con IA local. Trabajo cómodo tanto en el backend como conectando capas de datos con interfaces web.
           </p>
-          <p class="text-slate-300 font-body leading-relaxed">
+          <p class="text-slate-300 font-body leading-relaxed" data-i18n="about.p3">
             Me interesan especialmente los proyectos que involucren integración de fuentes de datos, automatización con herramientas como n8n, y arquitecturas que escalen en producción con Docker y CI/CD.
           </p>
         </div>
@@ -306,19 +327,19 @@
         <div class="md:col-span-2 reveal" style="transition-delay:0.1s">
           <div class="glass rounded-2xl p-6 space-y-4">
             <div>
-              <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Foco profesional</p>
+              <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2" data-i18n="about.focus.title">Foco profesional</p>
               <ul class="space-y-2 text-sm text-slate-300 font-body">
-                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>Pipelines ETL & procesamiento de datos</li>
-                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>Backend con Java / Spring Boot / Python</li>
-                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>Automatización de flujos con n8n y Macros en Excel</li>
-                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>Integración de bases de datos SQL/NoSQL</li>
-                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>DevOps con Docker, Azure & CI/CD</li>
-                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>Dashboards en Power Bi</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span><span data-i18n="about.focus.1">Pipelines ETL & procesamiento de datos</span></li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span><span data-i18n="about.focus.2">Backend con Java / Spring Boot / Python</span></li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span><span data-i18n="about.focus.3">Automatización de flujos con n8n y Macros en Excel</span></li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span><span data-i18n="about.focus.4">Integración de bases de datos SQL/NoSQL</span></li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span><span data-i18n="about.focus.5">DevOps con Docker, Azure & CI/CD</span></li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span><span data-i18n="about.focus.6">Dashboards en Power BI</span></li>
               </ul>
             </div>
             <hr class="section-divider" />
             <div>
-              <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Contacto rápido</p>
+              <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2" data-i18n="about.quickcontact">Contacto rápido</p>
               <a href="mailto:1218236@gmail.com" class="text-slate-300 text-sm font-body hover:text-sky-400 transition-colors flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 1218236@gmail.com
@@ -326,6 +347,10 @@
               <a href="https://github.com/Andr-Abr" target="_blank" rel="noopener" class="text-slate-300 text-sm font-body hover:text-sky-400 transition-colors flex items-center gap-2 mt-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-sky-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
                 github.com/Andr-Abr
+              </a>
+              <a href="https://www.linkedin.com/in/andr-abr/" target="_blank" rel="noopener" class="text-slate-300 text-sm font-body hover:text-sky-400 transition-colors flex items-center gap-2 mt-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-sky-400" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              linkedin.com/in/andr-abr/
               </a>
             </div>
           </div>
@@ -342,8 +367,8 @@
   <section id="proyectos" class="py-24">
     <div class="max-w-6xl mx-auto px-6">
       <div class="reveal mb-12">
-        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Trabajo destacado</p>
-        <h2 class="font-display text-4xl font-800 text-white">Proyectos</h2>
+        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2" data-i18n="projects.subtitle">Trabajo destacado</p>
+        <h2 class="font-display text-4xl font-800 text-white" data-i18n="projects.title">Proyectos</h2>
         <div class="accent-line w-14 mt-3"></div>
       </div>
 
@@ -355,32 +380,32 @@
             <div>
               <div class="flex items-center gap-2 mb-1">
                 <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
-                <span class="text-green-400 text-xs font-body font-500">En producción</span>
+                <span class="text-green-400 text-xs font-body font-500" data-i18n="projects.badge.prod">En producción</span>
               </div>
               <h3 class="font-display text-2xl font-700 text-white">RastrosAuto</h3>
-              <p class="text-sky-400 text-sm font-body mt-0.5">Sistema de búsqueda vehicular</p>
+              <p class="text-sky-400 text-sm font-body mt-0.5" data-i18n="projects.rastrosauto.role">Sistema de búsqueda vehicular</p>
             </div>
             <div class="flex gap-2 flex-shrink-0">
-              <a href="https://rastrosauto.onrender.com" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="Demo en vivo">
+              <a href="https://rastrosauto.onrender.com" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="Demo">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
               </a>
-              <a href="https://github.com/Andr-Abr/rastrosauto" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="Ver código">
+              <a href="https://github.com/Andr-Abr/rastrosauto" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="GitHub">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
               </a>
             </div>
           </div>
 
-          <p class="text-slate-300 text-sm font-body leading-relaxed">
+          <p class="text-slate-300 text-sm font-body leading-relaxed" data-i18n="projects.rastrosauto.desc">
             Plataforma de búsqueda y comparación vehicular con más de <strong class="text-white">45,000 registros</strong> de especificaciones técnicas. Incluye autenticación, favoritos, historial de búsquedas y comparador lado a lado. Totalmente dockerizado y desplegado en Render + Supabase.
           </p>
 
           <div>
-            <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Características</p>
+            <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2" data-i18n="projects.features">Características</p>
             <ul class="text-slate-400 text-sm font-body space-y-1">
-              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> Búsqueda avanzada con múltiples filtros simultáneos</li>
-              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> Sistema de autenticación y gestión de usuarios</li>
-              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> Comparador de vehículos lado a lado</li>
-              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> CI/CD con GitHub Actions, monitoring 24/7</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span><span data-i18n="projects.rastrosauto.f1">Búsqueda avanzada con múltiples filtros simultáneos</span></li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span><span data-i18n="projects.rastrosauto.f2">Sistema de autenticación y gestión de usuarios</span></li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span><span data-i18n="projects.rastrosauto.f3">Comparador de vehículos lado a lado</span></li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span><span data-i18n="projects.rastrosauto.f4">CI/CD con GitHub Actions, monitoring 24/7</span></li>
             </ul>
           </div>
 
@@ -402,32 +427,33 @@
             <div>
               <div class="flex items-center gap-2 mb-1">
                 <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
-                <span class="text-green-400 text-xs font-body font-500">En producción</span>
+                <span class="text-green-400 text-xs font-body font-500" data-i18n="projects.badge.prod">En producción</span>
               </div>
               <h3 class="font-display text-2xl font-700 text-white">OrganizaText</h3>
-              <p class="text-sky-400 text-sm font-body mt-0.5">Procesamiento inteligente de documentos</p>
+              <p class="text-sky-400 text-sm font-body mt-0.5" data-i18n="projects.organizatext.role">Procesamiento inteligente de documentos</p>
             </div>
             <div class="flex gap-2 flex-shrink-0">
-              <a href="https://organizatext-web.vercel.app" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="Demo en vivo">
+              <a href="https://organizatext-web.vercel.app" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="Demo">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
               </a>
-              <a href="https://github.com/Andr-Abr/organizatext" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="Ver código">
+              <a href="https://github.com/Andr-Abr/organizatext" target="_blank" rel="noopener" class="btn-ghost p-2 rounded-lg" title="GitHub">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
               </a>
             </div>
           </div>
 
-          <p class="text-slate-300 text-sm font-body leading-relaxed">
+          <p class="text-slate-300 text-sm font-body leading-relaxed" data-i18n="projects.organizatext.desc">
             Sistema dual (web + desktop) para procesamiento y categorización automatizada de documentos mediante <strong class="text-white">NLP y RAG</strong>. La versión web funciona 100% offline en el navegador (privacy-first). La app desktop incluye LLM local con Ollama y búsqueda semántica vectorial.
           </p>
 
           <div>
-            <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Características</p>
+            <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2" data-i18n="projects.features">Características</p>
             <ul class="text-slate-400 text-sm font-body space-y-1">
-              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> Extracción NLP: keywords, entidades, emails, URLs</li>
-              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> RAG completo con LanceDB + Ollama (desktop)</li>
-              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> Procesamiento de 3000+ archivos sin lag</li>
-              <li class="flex items-center gap-2"><span class="text-sky-400">→</span> CI/CD con Jenkins, deploy automático a Vercel</li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span><span data-i18n="projects.organizatext.f1">Extracción NLP: keywords, entidades, emails, URLs</span></li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span><span data-i18n="projects.organizatext.f2">RAG completo con LanceDB + Ollama (desktop)</span></li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span><span data-i18n="projects.organizatext.f3">Procesamiento de 3000+ archivos sin lag</span></li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span><span data-i18n="projects.organizatext.f4">CI/CD con Jenkins, deploy automático a Vercel</span></li>
+              <li class="flex items-center gap-2"><span class="text-sky-400">→</span><span data-i18n="projects.organizatext.f5">App Android nativa con LLM local on-device (MediaPipe): 4 modelos, chat con documentos, 100% offline</span></li>
             </ul>
           </div>
 
@@ -440,7 +466,9 @@
             <span class="tag">Ollama</span>
             <span class="tag">n8n</span>
             <span class="tag">Jenkins</span>
-            <span class="tag">Version Android (Kotlin) en desarrollo</span>
+            <span class="tag">Kotlin / Jetpack Compose</span>
+            <span class="tag">MediaPipe LLM</span>
+            <span class="tag">Android</span>
           </div>
         </div>
 
@@ -456,14 +484,13 @@
   <section id="habilidades" class="py-24">
     <div class="max-w-6xl mx-auto px-6">
       <div class="reveal mb-12">
-        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Tecnologías</p>
-        <h2 class="font-display text-4xl font-800 text-white">Habilidades</h2>
+        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2" data-i18n="skills.subtitle">Tecnologías</p>
+        <h2 class="font-display text-4xl font-800 text-white" data-i18n="skills.title">Habilidades</h2>
         <div class="accent-line w-14 mt-3"></div>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <!-- Backend -->
         <div class="glass-light rounded-2xl p-6 reveal">
           <div class="flex items-center gap-3 mb-4">
             <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
@@ -482,13 +509,12 @@
           </div>
         </div>
 
-        <!-- Datos & ETL -->
         <div class="glass-light rounded-2xl p-6 reveal" style="transition-delay:0.05s">
           <div class="flex items-center gap-3 mb-4">
             <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h7"/></svg>
             </div>
-            <h3 class="text-white font-display font-700 text-base">Datos & ETL</h3>
+            <h3 class="text-white font-display font-700 text-base" data-i18n="skills.data">Datos & ETL</h3>
           </div>
           <div class="flex flex-wrap gap-2">
             <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">PostgreSQL 15</span>
@@ -498,12 +524,11 @@
             <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">NLP / NER</span>
             <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">RAG</span>
             <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Web Workers</span>
-            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Power Bi</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Power BI</span>
             <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Excel</span>
           </div>
         </div>
 
-        <!-- Frontend -->
         <div class="glass-light rounded-2xl p-6 reveal" style="transition-delay:0.1s">
           <div class="flex items-center gap-3 mb-4">
             <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
@@ -522,13 +547,12 @@
           </div>
         </div>
 
-        <!-- DevOps & Infra -->
         <div class="glass-light rounded-2xl p-6 reveal" style="transition-delay:0.15s">
           <div class="flex items-center gap-3 mb-4">
             <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/></svg>
             </div>
-            <h3 class="text-white font-display font-700 text-base">DevOps & Infra</h3>
+            <h3 class="text-white font-display font-700 text-base" data-i18n="skills.devops">DevOps & Infra</h3>
           </div>
           <div class="flex flex-wrap gap-2">
             <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Docker</span>
@@ -542,13 +566,12 @@
           </div>
         </div>
 
-        <!-- IA & Automatización -->
         <div class="glass-light rounded-2xl p-6 reveal" style="transition-delay:0.2s">
           <div class="flex items-center gap-3 mb-4">
             <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
             </div>
-            <h3 class="text-white font-display font-700 text-base">IA & Automatización</h3>
+            <h3 class="text-white font-display font-700 text-base" data-i18n="skills.ai">IA & Automatización</h3>
           </div>
           <div class="flex flex-wrap gap-2">
             <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">n8n</span>
@@ -556,22 +579,24 @@
             <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">MCP Protocol</span>
             <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">sentence-transformers</span>
             <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">JWT / AES-GCM</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Hugging Face</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">MediaPipe (LLM Android)</span>
+            <span class="skill-pill text-slate-300 text-xs px-3 py-1.5 rounded-lg font-body">Kotlin / Jetpack Compose</span>
           </div>
         </div>
 
-        <!-- Idiomas -->
         <div class="glass-light rounded-2xl p-6 reveal" style="transition-delay:0.25s">
           <div class="flex items-center gap-3 mb-4">
             <div class="w-9 h-9 rounded-xl bg-sky-500/20 flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5h18M9 3v2m6-2v2M4 9h16M10 13H4m16 0h-6m-4 4H4m16 0h-6"/></svg>
             </div>
-            <h3 class="text-white font-display font-700 text-base">Idiomas</h3>
+            <h3 class="text-white font-display font-700 text-base" data-i18n="skills.languages">Idiomas</h3>
           </div>
           <div class="space-y-3">
             <div>
               <div class="flex justify-between text-sm font-body mb-1">
-                <span class="text-slate-300">Español</span>
-                <span class="text-sky-400">Nativo</span>
+                <span class="text-slate-300" data-i18n="skills.lang.es">Español</span>
+                <span class="text-sky-400" data-i18n="skills.lang.es.level">Nativo</span>
               </div>
               <div class="h-1.5 rounded-full bg-white/10 overflow-hidden">
                 <div class="h-full rounded-full bg-gradient-to-r from-sky-400 to-sky-600" style="width:100%"></div>
@@ -579,8 +604,8 @@
             </div>
             <div>
               <div class="flex justify-between text-sm font-body mb-1">
-                <span class="text-slate-300">Inglés</span>
-                <span class="text-sky-400">Técnico / lectura y escritura</span>
+                <span class="text-slate-300" data-i18n="skills.lang.en">Inglés</span>
+                <span class="text-sky-400" data-i18n="skills.lang.en.level">Técnico / lectura y escritura</span>
               </div>
               <div class="h-1.5 rounded-full bg-white/10 overflow-hidden">
                 <div class="h-full rounded-full bg-gradient-to-r from-sky-400 to-sky-600" style="width:65%"></div>
@@ -601,19 +626,19 @@
   <section id="contacto" class="py-24">
     <div class="max-w-6xl mx-auto px-6">
       <div class="reveal mb-12">
-        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2">Hablemos</p>
-        <h2 class="font-display text-4xl font-800 text-white">Contacto</h2>
+        <p class="text-sky-400 text-xs uppercase tracking-widest font-body mb-2" data-i18n="contact.subtitle">Hablemos</p>
+        <h2 class="font-display text-4xl font-800 text-white" data-i18n="contact.title">Contacto</h2>
         <div class="accent-line w-14 mt-3"></div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
 
-        <!-- Info -->
         <div class="reveal">
-          <p class="text-slate-300 font-body leading-relaxed mb-8">
-            Estoy abierto a oportunidades laborales como Analista de Datos, Desarrollador ETL o roles backend. Si tienes un proyecto o una vacante, con gusto conversamos.
+          <p class="text-slate-300 font-body leading-relaxed mb-8" data-i18n="contact.desc">
+            Estoy abierto a oportunidades laborales como Analista de Datos, Desarrollador ETL, AI Engineer junior o roles backend. Si tienes un proyecto o una vacante, con gusto conversamos.
           </p>
           <div class="space-y-4">
+            <!-- Email -->
             <a href="mailto:1218236@gmail.com" class="glass-light rounded-xl p-4 flex items-center gap-4 hover:border-sky-400/40 transition-colors group">
               <div class="w-10 h-10 rounded-lg bg-sky-500/15 flex items-center justify-center flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -623,6 +648,7 @@
                 <p class="text-white font-body text-sm group-hover:text-sky-300 transition-colors">1218236@gmail.com</p>
               </div>
             </a>
+            <!-- GitHub -->
             <a href="https://github.com/Andr-Abr" target="_blank" rel="noopener" class="glass-light rounded-xl p-4 flex items-center gap-4 hover:border-sky-400/40 transition-colors group">
               <div class="w-10 h-10 rounded-lg bg-sky-500/15 flex items-center justify-center flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -632,37 +658,48 @@
                 <p class="text-white font-body text-sm group-hover:text-sky-300 transition-colors">github.com/Andr-Abr</p>
               </div>
             </a>
-            <a href="cv.pdf" download class="glass-light rounded-xl p-4 flex items-center gap-4 hover:border-sky-400/40 transition-colors group">
+            <!-- LinkedIn — NUEVO -->
+            <a href="https://www.linkedin.com/in/andr-abr/" target="_blank" rel="noopener" class="glass-light rounded-xl p-4 flex items-center gap-4 hover:border-sky-400/40 transition-colors group">
+              <div class="w-10 h-10 rounded-lg bg-sky-500/15 flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </div>
+              <div>
+                <p class="text-xs text-sky-400 font-body uppercase tracking-widest">LinkedIn</p>
+                <p class="text-white font-body text-sm group-hover:text-sky-300 transition-colors">linkedin.com/in/<span data-i18n="contact.linkedin.handle">andr-abr/</span></p>
+              </div>
+            </a>
+            <!-- CV download -->
+            <a id="contact-cv-link" href="cv.pdf" download class="glass-light rounded-xl p-4 flex items-center gap-4 hover:border-sky-400/40 transition-colors group">
               <div class="w-10 h-10 rounded-lg bg-sky-500/15 flex items-center justify-center flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
               </div>
               <div>
-                <p class="text-xs text-sky-400 font-body uppercase tracking-widest">Currículum</p>
-                <p class="text-white font-body text-sm group-hover:text-sky-300 transition-colors">Descargar CV (PDF · ATS Ready)</p>
+                <p class="text-xs text-sky-400 font-body uppercase tracking-widest" data-i18n="contact.cv.label">Currículum</p>
+                <p class="text-white font-body text-sm group-hover:text-sky-300 transition-colors" data-i18n="contact.cv.desc">Descargar CV (PDF · ATS Ready)</p>
               </div>
             </a>
           </div>
         </div>
 
-        <!-- Formulario mailto -->
+        <!-- Formulario -->
         <div class="glass rounded-2xl p-7 reveal" style="transition-delay:0.1s">
-          <p class="text-white font-display font-700 text-lg mb-5">Envíame un mensaje</p>
+          <p class="text-white font-display font-700 text-lg mb-5" data-i18n="contact.form.title">Envíame un mensaje</p>
           <div id="contact-form" class="space-y-4">
             <div>
-              <label class="text-slate-400 text-xs font-body uppercase tracking-widest block mb-1.5">Nombre</label>
-              <input id="cf-name" type="text" placeholder="Tu nombre" class="form-input" />
+              <label class="text-slate-400 text-xs font-body uppercase tracking-widest block mb-1.5" data-i18n="contact.form.name">Nombre</label>
+              <input id="cf-name" type="text" class="form-input" data-i18n-placeholder="contact.form.name.ph" placeholder="Tu nombre" />
             </div>
             <div>
               <label class="text-slate-400 text-xs font-body uppercase tracking-widest block mb-1.5">Email</label>
-              <input id="cf-email" type="email" placeholder="tu@email.com" class="form-input" />
+              <input id="cf-email" type="email" class="form-input" data-i18n-placeholder="contact.form.email.ph" placeholder="tu@email.com" />
             </div>
             <div>
-              <label class="text-slate-400 text-xs font-body uppercase tracking-widest block mb-1.5">Mensaje</label>
-              <textarea id="cf-msg" rows="4" placeholder="Cuéntame sobre la oportunidad..." class="form-input resize-none"></textarea>
+              <label class="text-slate-400 text-xs font-body uppercase tracking-widest block mb-1.5" data-i18n="contact.form.message">Mensaje</label>
+              <textarea id="cf-msg" rows="4" class="form-input resize-none" data-i18n-placeholder="contact.form.message.ph" placeholder="Cuéntame sobre la oportunidad..."></textarea>
             </div>
             <button onclick="sendMail()" class="btn-primary w-full text-white py-3 rounded-xl font-body font-500 text-sm flex items-center justify-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
-              Enviar mensaje
+              <span data-i18n="contact.form.send">Enviar mensaje</span>
             </button>
           </div>
         </div>
@@ -678,19 +715,221 @@
     <div class="max-w-6xl mx-auto px-6 flex flex-col items-center md:flex-row md:justify-between gap-4 text-center md:text-left">
       <p class="text-slate-500 text-sm font-body">© 2026 Andres Arturo Bohada Rojas</p>
       <div class="flex gap-6 text-sm font-body text-slate-500">
-        <a href="#sobre-mi" class="hover:text-sky-400 transition-colors">Sobre mí</a>
-        <a href="#proyectos" class="hover:text-sky-400 transition-colors">Proyectos</a>
-        <a href="#habilidades" class="hover:text-sky-400 transition-colors">Habilidades</a>
-        <a href="#contacto" class="hover:text-sky-400 transition-colors">Contacto</a>
+        <a href="#sobre-mi" class="hover:text-sky-400 transition-colors" data-i18n="nav.about">Sobre mí</a>
+        <a href="#proyectos" class="hover:text-sky-400 transition-colors" data-i18n="nav.projects">Proyectos</a>
+        <a href="#habilidades" class="hover:text-sky-400 transition-colors" data-i18n="nav.skills">Habilidades</a>
+        <a href="#contacto" class="hover:text-sky-400 transition-colors" data-i18n="nav.contact">Contacto</a>
       </div>
     </div>
   </footer>
 
   <!-- ══════════════════════════════════════════
-       JS: Scroll reveal + mailto form
+       JS: i18n + CV dinámico + scroll reveal + mailto
   ══════════════════════════════════════════ -->
   <script>
-    // Reveal on scroll
+    // ── Diccionario de traducciones ──────────────────────────────────────────
+    const translations = {
+      es: {
+        "nav.about":    "Sobre mí",
+        "nav.projects": "Proyectos",
+        "nav.skills":   "Habilidades",
+        "nav.contact":  "Contacto",
+        "nav.cv":       "Descargar CV",
+
+        "hero.available":        "Disponible para oportunidades",
+        "hero.role":             "Analista de Datos & Desarrollador ETL",
+        "hero.desc":             "Construyo sistemas que transforman datos en decisiones. Trabajo con pipelines ETL, aplicaciones backend robustas y herramientas de procesamiento inteligente de documentos.",
+        "hero.cta.projects":     "Ver proyectos",
+        "hero.stat.projects":    "Proyectos\nen producción",
+        "hero.stat.records":     "Registros en\nbase de datos",
+        "hero.stack":            "Stack principal",
+
+        "about.subtitle":        "Quién soy",
+        "about.title":           "Sobre mí",
+        "about.p1":              'Soy desarrollador con enfoque en <strong class="text-white">análisis de datos, pipelines ETL y automatización de procesos</strong>. Me especializo en construir sistemas que toman datos crudos y los convierten en información útil y accionable.',
+        "about.p2":              "He desarrollado aplicaciones de producción que van desde sistemas de búsqueda vehicular con más de 45,000 registros hasta herramientas de procesamiento inteligente de documentos con IA local. Trabajo cómodo tanto en el backend como conectando capas de datos con interfaces web.",
+        "about.p3":              "Me interesan especialmente los proyectos que involucren integración de fuentes de datos, automatización con herramientas como n8n, y arquitecturas que escalen en producción con Docker y CI/CD.",
+        "about.focus.title":     "Foco profesional",
+        "about.focus.1":         "Pipelines ETL & procesamiento de datos",
+        "about.focus.2":         "Backend con Java / Spring Boot / Python",
+        "about.focus.3":         "Automatización de flujos con n8n y Macros en Excel",
+        "about.focus.4":         "Integración de bases de datos SQL/NoSQL",
+        "about.focus.5":         "DevOps con Docker, Azure & CI/CD",
+        "about.focus.6":         "Dashboards en Power BI",
+        "about.quickcontact":    "Contacto rápido",
+
+        "projects.subtitle":     "Trabajo destacado",
+        "projects.title":        "Proyectos",
+        "projects.badge.prod":   "En producción",
+        "projects.features":     "Características",
+        "projects.rastrosauto.role": "Sistema de búsqueda vehicular",
+        "projects.rastrosauto.desc": 'Plataforma de búsqueda y comparación vehicular con más de <strong class="text-white">45,000 registros</strong> de especificaciones técnicas. Incluye autenticación, favoritos, historial de búsquedas y comparador lado a lado. Totalmente dockerizado y desplegado en Render + Supabase.',
+        "projects.rastrosauto.f1":   "Búsqueda avanzada con múltiples filtros simultáneos",
+        "projects.rastrosauto.f2":   "Sistema de autenticación y gestión de usuarios",
+        "projects.rastrosauto.f3":   "Comparador de vehículos lado a lado",
+        "projects.rastrosauto.f4":   "CI/CD con GitHub Actions, monitoring 24/7",
+        "projects.organizatext.role": "Procesamiento inteligente de documentos",
+        "projects.organizatext.desc": 'Sistema dual (web + desktop) para procesamiento y categorización automatizada de documentos mediante <strong class="text-white">NLP y RAG</strong>. La versión web funciona 100% offline en el navegador (privacy-first). La app desktop incluye LLM local con Ollama y búsqueda semántica vectorial.',
+        "projects.organizatext.f1": "Extracción NLP: keywords, entidades, emails, URLs",
+        "projects.organizatext.f2": "RAG completo con LanceDB + Ollama (desktop)",
+        "projects.organizatext.f3": "Procesamiento de 3000+ archivos sin lag",
+        "projects.organizatext.f4": "CI/CD con Jenkins, deploy automático a Vercel",
+        "projects.organizatext.f5": "App Android nativa con LLM local on-device (MediaPipe): 4 modelos, chat con documentos, 100% offline",
+
+        "skills.subtitle":    "Tecnologías",
+        "skills.title":       "Habilidades",
+        "skills.data":        "Datos & ETL",
+        "skills.devops":      "DevOps & Infra",
+        "skills.ai":          "IA & Automatización",
+        "skills.languages":   "Idiomas",
+        "skills.lang.es":     "Español",
+        "skills.lang.es.level": "Nativo",
+        "skills.lang.en":     "Inglés",
+        "skills.lang.en.level": "Técnico / lectura y escritura",
+
+        "contact.subtitle":   "Hablemos",
+        "contact.title":      "Contacto",
+        "contact.desc":       "Estoy abierto a oportunidades laborales como Analista de Datos, Desarrollador ETL, AI Engineer junior o roles backend. Si tienes un proyecto o una vacante, con gusto conversamos.",
+        "contact.cv.label":   "Currículum",
+        "contact.cv.desc":    "Descargar CV (PDF · ATS Ready)",
+        "contact.linkedin.handle": "andr-abr/",
+        "contact.form.title": "Envíame un mensaje",
+        "contact.form.name":  "Nombre",
+        "contact.form.name.ph": "Tu nombre",
+        "contact.form.email.ph": "tu@email.com",
+        "contact.form.message": "Mensaje",
+        "contact.form.message.ph": "Cuéntame sobre la oportunidad...",
+        "contact.form.send":  "Enviar mensaje",
+      },
+      en: {
+        "nav.about":    "About me",
+        "nav.projects": "Projects",
+        "nav.skills":   "Skills",
+        "nav.contact":  "Contact",
+        "nav.cv":       "Download CV",
+
+        "hero.available":        "Available for opportunities",
+        "hero.role":             "Data Analyst & ETL Developer",
+        "hero.desc":             "I build systems that turn data into decisions. I work with ETL pipelines, robust backend applications and intelligent document processing tools.",
+        "hero.cta.projects":     "View projects",
+        "hero.stat.projects":    "Projects\nin production",
+        "hero.stat.records":     "Records in\ndatabase",
+        "hero.stack":            "Main stack",
+
+        "about.subtitle":        "Who I am",
+        "about.title":           "About me",
+        "about.p1":              'I\'m a developer focused on <strong class="text-white">data analysis, ETL pipelines and process automation</strong>. I specialize in building systems that take raw data and turn it into useful, actionable information.',
+        "about.p2":              "I have built production applications ranging from vehicle search systems with over 45,000 records to intelligent document processing tools with local AI. I am comfortable working on the backend as well as connecting data layers to web interfaces.",
+        "about.p3":              "I am especially interested in projects involving data source integration, automation with tools like n8n, and architectures that scale in production with Docker and CI/CD.",
+        "about.focus.title":     "Professional focus",
+        "about.focus.1":         "ETL Pipelines & data processing",
+        "about.focus.2":         "Backend with Java / Spring Boot / Python",
+        "about.focus.3":         "Workflow automation with n8n and Excel Macros",
+        "about.focus.4":         "SQL/NoSQL database integration",
+        "about.focus.5":         "DevOps with Docker, Azure & CI/CD",
+        "about.focus.6":         "Power BI dashboards",
+        "about.quickcontact":    "Quick contact",
+
+        "projects.subtitle":     "Featured work",
+        "projects.title":        "Projects",
+        "projects.badge.prod":   "In production",
+        "projects.features":     "Features",
+        "projects.rastrosauto.role": "Vehicle search system",
+        "projects.rastrosauto.desc": 'Vehicle search and comparison platform with over <strong class="text-white">45,000 records</strong> of technical specifications. Includes authentication, favorites, search history and side-by-side comparison. Fully dockerized and deployed on Render + Supabase.',
+        "projects.rastrosauto.f1":   "Advanced search with multiple simultaneous filters",
+        "projects.rastrosauto.f2":   "Authentication system and user management",
+        "projects.rastrosauto.f3":   "Side-by-side vehicle comparison",
+        "projects.rastrosauto.f4":   "CI/CD with GitHub Actions, 24/7 monitoring",
+        "projects.organizatext.role": "Intelligent document processing",
+        "projects.organizatext.desc": 'Dual system (web + desktop) for automated document processing and categorization using <strong class="text-white">NLP and RAG</strong>. The web version works 100% offline in the browser (privacy-first). The desktop app includes a local LLM with Ollama and vector semantic search.',
+        "projects.organizatext.f1": "NLP extraction: keywords, entities, emails, URLs",
+        "projects.organizatext.f2": "Full RAG with LanceDB + Ollama (desktop)",
+        "projects.organizatext.f3": "Processing of 3000+ files without lag",
+        "projects.organizatext.f4": "CI/CD with Jenkins, automatic deploy to Vercel",
+        "projects.organizatext.f5": "Native Android app with on-device local LLM (MediaPipe): 4 models, chat with documents, 100% offline",
+
+        "skills.subtitle":    "Technologies",
+        "skills.title":       "Skills",
+        "skills.data":        "Data & ETL",
+        "skills.devops":      "DevOps & Infra",
+        "skills.ai":          "AI & Automation",
+        "skills.languages":   "Languages",
+        "skills.lang.es":     "Spanish",
+        "skills.lang.es.level": "Native",
+        "skills.lang.en":     "English",
+        "skills.lang.en.level": "Technical / reading and writing",
+
+        "contact.subtitle":   "Let's talk",
+        "contact.title":      "Contact",
+        "contact.desc":       "I am open to job opportunities as a Data Analyst, ETL Developer, junior AI Engineer or backend roles. If you have a project or a vacancy, I'd love to chat.",
+        "contact.cv.label":   "Resume",
+        "contact.cv.desc":    "Download CV (PDF · ATS Ready)",
+        "contact.linkedin.handle": "andr-abr/",
+        "contact.form.title": "Send me a message",
+        "contact.form.name":  "Name",
+        "contact.form.name.ph": "Your name",
+        "contact.form.email.ph": "your@email.com",
+        "contact.form.message": "Message",
+        "contact.form.message.ph": "Tell me about the opportunity...",
+        "contact.form.send":  "Send message",
+      }
+    };
+
+    // ── CV filenames per language ─────────────────────────────────────────────
+    const cvFiles = {
+      es: 'cv.pdf',
+      en: 'cv-en.pdf'
+    };
+
+    // ── Current language state ────────────────────────────────────────────────
+    let currentLang = 'es';
+
+    // ── Apply translations to DOM ─────────────────────────────────────────────
+    function applyTranslations(lang) {
+      const t = translations[lang];
+
+      // Text content
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) {
+          el.innerHTML = t[key];
+        }
+      });
+
+      // Placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key] !== undefined) {
+          el.setAttribute('placeholder', t[key]);
+        }
+      });
+
+      // CV links
+      const cvFile = cvFiles[lang];
+      ['nav-cv-link', 'hero-cv-link', 'contact-cv-link'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.setAttribute('href', cvFile);
+      });
+
+      // LinkedIn link (por si quisieras diferenciar por idioma en el futuro)
+      // No cambia por ahora.
+
+      // HTML lang attribute
+      document.documentElement.setAttribute('lang', lang);
+    }
+
+    // ── Switch language ───────────────────────────────────────────────────────
+    function setLang(lang) {
+      if (lang === currentLang) return;
+      currentLang = lang;
+
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+      applyTranslations(lang);
+    }
+
+    // ── Scroll reveal ─────────────────────────────────────────────────────────
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -702,17 +941,17 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Mailto form
+    // ── Mailto form ───────────────────────────────────────────────────────────
     function sendMail() {
       const name  = document.getElementById('cf-name').value.trim();
       const email = document.getElementById('cf-email').value.trim();
       const msg   = document.getElementById('cf-msg').value.trim();
-      if (!name || !email || !msg) {
-        alert('Por favor completa todos los campos.');
-        return;
-      }
-      const subject = encodeURIComponent(`Contacto desde portafolio — ${name}`);
-      const body    = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${msg}`);
+      const alert_msg = currentLang === 'es'
+        ? 'Por favor completa todos los campos.'
+        : 'Please fill in all fields.';
+      if (!name || !email || !msg) { alert(alert_msg); return; }
+      const subject = encodeURIComponent(`Portfolio contact — ${name}`);
+      const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}`);
       window.location.href = `mailto:1218236@gmail.com?subject=${subject}&body=${body}`;
     }
   </script>
